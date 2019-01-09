@@ -23,6 +23,15 @@ class App extends React.Component {
   };
   addTask = (event) => {
     event.preventDefault()
+    this.setState({
+      taskList: [
+        ...this.state.taskList,
+      {
+        task: this.state.task,
+        id: Date.now(),
+        completed: false
+      }]
+    })
   }
   clearCompleted = (event) => {
     event.preventDefault()
