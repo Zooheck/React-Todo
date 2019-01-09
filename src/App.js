@@ -2,10 +2,10 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList'
 
 const toDoItems = [
-  { task: 'finish building ToDo App', id: Date.now(), completed: false},
-  { task: 'work out', id: Date.now(), completed: false },
-  { task: 'pray the rosary', id: Date.now(), completed: false },
-  { task: 'brush my teeth', id: Date.now(), completed: false }
+  { task: 'finish building ToDo App', id: (Date.now() + 1), completed: false},
+  { task: 'work out', id: (Date.now() + 2), completed: false },
+  { task: 'pray the rosary', id: (Date.now() + 3), completed: false },
+  { task: 'brush my teeth', id: (Date.now() + 4), completed: false }
 ];
 
 class App extends React.Component {
@@ -33,6 +33,19 @@ class App extends React.Component {
       }]
     })
   }
+  toggleCompleted = (id) => {
+    this.setState(previousState => {
+      const updatedToDoItems = previousState.taskList.map(toDoItem => {
+        if (toDoItem.id === id) {
+          toDoItem.completed = !toDoItem.completed
+        }
+        return toDoItem
+      })
+      return {
+        taskList: updatedToDoItems
+      }
+    })
+  }
   clearCompleted = (event) => {
     event.preventDefault()
   }
@@ -45,6 +58,7 @@ class App extends React.Component {
           handleChanges={this.handleChanges}
           addTask={this.addTask}
           clearCompleted={this.clearCompleted}
+          toggleCompleted={this.toggleCompleted}
         />
       </div>
     );
