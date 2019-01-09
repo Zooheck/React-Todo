@@ -6,7 +6,7 @@ import Todo from './Todo'
 const TodoList = (props) => {
   return (
     <div>
-        <Todo />
+        <Todo taskList={props.taskList}/>
         <TodoForm />
     </div>
   )
