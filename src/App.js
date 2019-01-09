@@ -26,6 +26,7 @@ class App extends React.Component {
       <div>
         <TodoList
           taskList={this.state.taskList}
+          task={this.state.task}
         />
       </div>
     );

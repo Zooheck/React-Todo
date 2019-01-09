@@ -7,7 +7,7 @@ const TodoList = (props) => {
   return (
     <div>
         <Todo taskList={props.taskList}/>
-        <TodoForm />
+        <TodoForm task={props.task}/>
     </div>
   )
 }

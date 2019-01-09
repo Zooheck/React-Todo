@@ -4,6 +4,8 @@ const TodoForm = (props) => {
   return (
     <form>
       <input
+      value={props.task}
+      name="task"
       type="text"
       placeholder="Add a new task"
       />
