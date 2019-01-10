@@ -13,9 +13,12 @@ const TodoList = (props) => {
             handleChanges={props.handleChanges}
             addTask={props.addTask}
             clearCompleted={props.clearCompleted}
-            searchTasks={props.searchTasks}
+            
+            
         />
-        <SearchForm />
+        <SearchForm 
+        searchTasks={props.searchTasks}
+        />
     </div>
   )
 }

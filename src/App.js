@@ -24,6 +24,15 @@ class App extends React.Component {
   };
   searchTasks = (event) => {
     this.handleChanges(event)
+    // CHECK IF SEARCHVALUE STATE IS EQUAL TO ANY INSTANCE OF this.state.taskList.task
+    this.setState(previousState => {
+      const updatedToDoItems = previousState.taskList.filter(task => {
+        task.task === this.state.searchValue
+      })
+      return {
+        taskList: updatedToDoItems
+      }
+    })
   }
   addTask = (event) => {
     event.preventDefault()
