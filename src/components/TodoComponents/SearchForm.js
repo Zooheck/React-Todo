@@ -7,6 +7,7 @@ const SearchForm = (props) => {
         type="text"
         placeholder="Search tasks"
         name="searchValue"
+        value={props.searchValue}
         onChange={props.searchTasks}
       />
     </form>

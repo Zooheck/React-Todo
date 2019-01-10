@@ -18,6 +18,7 @@ const TodoList = (props) => {
         />
         <SearchForm 
         searchTasks={props.searchTasks}
+        searchValue={props.searchValue}
         />
     </div>
   )

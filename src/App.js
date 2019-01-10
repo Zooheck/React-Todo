@@ -13,6 +13,7 @@ class App extends React.Component {
     super()
     this.state = {
       taskList: toDoItems,
+      shownItems: toDoItems,
       task: "",
       searchValue: "",
       id: undefined,
@@ -21,29 +22,51 @@ class App extends React.Component {
   }
   handleChanges = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+    if (this.state.searchValue.length > 0) {
+      this.searchList(event.target.value);
+    }
   };
-  searchTasks = (event) => {
-    this.handleChanges(event)
-    // CHECK IF SEARCHVALUE STATE IS EQUAL TO ANY INSTANCE OF this.state.taskList.task
-    this.setState(previousState => {
-      const updatedToDoItems = previousState.taskList.filter(task => {
-        task.task === this.state.searchValue
+  searchList = (searchText) => {
+    if (searchText.length > 0) {
+      const shownItemsArray = this.state.taskList.filter(task => {
+        if (
+          JSON.stringify(task)
+          .toLowerCase()
+          .includes(searchText.toLowerCase())
+        ) {
+          return true
+        }
       })
-      return {
-        taskList: updatedToDoItems
-      }
-    })
-  }
+      this.setState({
+        shownItems: shownItemsArray,
+      })
+    }
+    else {
+      this.setState({
+        shownItems: this.state.taskList
+      })
+    }
+    }
+  
+  // searchTasks = (event) => {
+  //   this.handleChanges(event)
+  //   // CHECK IF SEARCHVALUE STATE IS EQUAL TO ANY INSTANCE OF this.state.taskList.task
+  //   const previousStateCopy = [...this.state.taskList]
+  //   this.setState(previousState => {
+  //     const updatedToDoItems = previousState.taskList.filter(task => {
+  //       task.task === this.state.searchValue
+  //     })
+  //     return {
+  //       taskList: updatedToDoItems
+  //     }
+  //   })
+  // }
   addTask = (event) => {
     event.preventDefault()
+    const newTaskList = [...this.state.taskList, {task: this.state.task, id: Date.now(), completed: false}]
     this.setState({
-      taskList: [
-        ...this.state.taskList,
-      {
-        task: this.state.task,
-        id: Date.now(),
-        completed: false
-      }]
+      taskList: newTaskList,
+      shownItems: newTaskList
     })
   }
   toggleCompleted = (id) => {
@@ -55,7 +78,8 @@ class App extends React.Component {
         return toDoItem
       })
       return {
-        taskList: updatedToDoItems
+        taskList: updatedToDoItems,
+        shownItems: updatedToDoItems
       }
     })
   }
@@ -64,7 +88,8 @@ class App extends React.Component {
     this.setState(previousState => {
       const completedToDoItems = previousState.taskList.filter(toDoItem => !toDoItem.completed)
       return {
-        taskList: completedToDoItems
+        taskList: completedToDoItems,
+        shownItems: completedToDoItems
       }
     })
   }
@@ -72,11 +97,12 @@ class App extends React.Component {
     return (
       <div>
         <TodoList
-          taskList={this.state.taskList}
+          taskList={this.state.shownItems}
           task={this.state.task}
           handleChanges={this.handleChanges}
           addTask={this.addTask}
-          searchTasks={this.searchTasks}
+          searchTasks={this.handleChanges}
+          searchValue={this.state.searchValue}
           clearCompleted={this.clearCompleted}
           toggleCompleted={this.toggleCompleted}
         />
