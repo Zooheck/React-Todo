@@ -4,22 +4,29 @@ import React from 'react'
 import TodoForm from './TodoForm';
 import Todo from './Todo'
 import SearchForm from './SearchForm'
+import './Todo.css'
 const TodoList = (props) => {
   return (
-    <div>
-        <Todo toggleCompleted={props.toggleCompleted} taskList={props.taskList}/>
+    <div className="red app-container">
+      <div className="app-functions">
         <TodoForm
-            task={props.task}
-            handleChanges={props.handleChanges}
-            addTask={props.addTask}
-            clearCompleted={props.clearCompleted}
-            
-            
-        />
-        <SearchForm 
-        searchTasks={props.searchTasks}
-        searchValue={props.searchValue}
-        />
+          task={props.task}
+          handleChanges={props.handleChanges}
+          addTask={props.addTask}
+          clearCompleted={props.clearCompleted}
+          
+          
+          />
+          <SearchForm 
+          searchTasks={props.searchTasks}
+          searchValue={props.searchValue}
+          />
+
+      </div>
+        
+        <Todo toggleCompleted={props.toggleCompleted} taskList={props.taskList}/>
+        
+        
     </div>
   )
 }

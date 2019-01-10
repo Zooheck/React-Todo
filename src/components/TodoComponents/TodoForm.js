@@ -1,6 +1,5 @@
 import React from 'react'
-import SearchForm from "./SearchForm"
-
+import './Todo.css'
 const TodoForm = (props) => {
   return (
     <form>
@@ -11,8 +10,11 @@ const TodoForm = (props) => {
       placeholder="Add a new task"
       onChange={props.handleChanges}
       />
-      <button onClick={props.addTask}>Add task</button>
-      <button onClick={props.clearCompleted}>Clear Completed</button>
+      <div className="form-container">
+        <button onClick={props.addTask}>Add task</button>
+        <button onClick={props.clearCompleted}>Clear Completed</button>
+      </div>
+      
     </form>
   )
 }
