@@ -48,6 +48,12 @@ class App extends React.Component {
   }
   clearCompleted = (event) => {
     event.preventDefault()
+    this.setState(previousState => {
+      const completedToDoItems = previousState.taskList.filter(toDoItem => !toDoItem.completed)
+      return {
+        taskList: completedToDoItems
+      }
+    })
   }
   render() {
     return (
