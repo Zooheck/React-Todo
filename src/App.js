@@ -14,6 +14,7 @@ class App extends React.Component {
     this.state = {
       taskList: toDoItems,
       task: "",
+      searchValue: "",
       id: undefined,
       completed: undefined
     }
@@ -21,6 +22,9 @@ class App extends React.Component {
   handleChanges = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
+  searchTasks = (event) => {
+    this.handleChanges(event)
+  }
   addTask = (event) => {
     event.preventDefault()
     this.setState({
@@ -63,6 +67,7 @@ class App extends React.Component {
           task={this.state.task}
           handleChanges={this.handleChanges}
           addTask={this.addTask}
+          searchTasks={this.searchTasks}
           clearCompleted={this.clearCompleted}
           toggleCompleted={this.toggleCompleted}
         />

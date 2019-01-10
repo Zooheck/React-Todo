@@ -3,6 +3,7 @@
 import React from 'react'
 import TodoForm from './TodoForm';
 import Todo from './Todo'
+import SearchForm from './SearchForm'
 const TodoList = (props) => {
   return (
     <div>
@@ -12,7 +13,9 @@ const TodoList = (props) => {
             handleChanges={props.handleChanges}
             addTask={props.addTask}
             clearCompleted={props.clearCompleted}
+            searchTasks={props.searchTasks}
         />
+        <SearchForm />
     </div>
   )
 }
