@@ -8,7 +8,7 @@ import './Todo.css'
 const TodoList = (props) => {
   return (
     <div className="red app-container">
-      <div className="app-functions">
+      <div className="form-container">
         <TodoForm
           task={props.task}
           handleChanges={props.handleChanges}
